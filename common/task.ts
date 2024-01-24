@@ -1,4 +1,4 @@
-interface Task {
+export default interface Task {
   description: string;
   finished: boolean;
 }
