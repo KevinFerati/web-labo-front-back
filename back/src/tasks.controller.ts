@@ -1,18 +1,19 @@
-import { Controller, Get, Post } from '@nestjs/common';
-import Task from "../../common/task"
-
+import {Body, Controller, Get, Post} from '@nestjs/common';
+interface Task {
+  description: string;
+  finished: boolean;
+}
 @Controller()
 export class TasksController {
   tasks: Task[] = [];
-  constructor() {}
 
-  @Post("/api/tasks")
-  addTask(task: Task) {
-    this.tasks.push(task)
+  @Post('/api/tasks')
+  addTask(@Body() task: Task) {
+    this.tasks.push(task);
   }
 
-  @Get("/api/tasks")
+  @Get('/api/tasks')
   getTasks(): Task[] {
-    return this.tasks
+    return this.tasks;
   }
 }
