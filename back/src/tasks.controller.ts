@@ -10,6 +10,8 @@ export class TasksController {
   @Post('/api/tasks')
   addTask(@Body() task: Task) {
     this.tasks.push(task);
+    console.log(this.tasks);
+    return this.getTasks();
   }
 
   @Get('/api/tasks')

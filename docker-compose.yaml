@@ -1,0 +1,18 @@
+version: "3"
+services:
+  frontend:
+    container_name: front
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    image: react
+    ports:
+      - "3000:3000"
+  backend:
+    container_name: back
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    image: back
+    ports:
+      - "3001:3001"

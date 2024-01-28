@@ -5,7 +5,7 @@ interface TaskDTO {
   description: string;
   finished: boolean;
 }
-const apiUrl = "http://localhost:3001";
+const apiUrl = "http://localhost:3001/api/tasks";
 
 function Task({task}: {task: TaskDTO}) {
   return (
@@ -23,7 +23,8 @@ function CreateTaskForm({onSent}: {onSent: (tasks: TaskDTO[]) => void}) {
     let task: TaskDTO = {
       description, finished
     }
-    fetch(apiUrl, {method: 'POST', body: JSON.stringify(task)})
+    fetch(apiUrl, { 
+      method: 'POST', body: JSON.stringify(task), headers: {"Content-Type": "application/json"}})
       .then(r => r.json())
       .then(onSent)
       .catch(console.error);
@@ -33,8 +34,7 @@ function CreateTaskForm({onSent}: {onSent: (tasks: TaskDTO[]) => void}) {
     <div>
       <div>
         <label>Description</label>
-        <textarea onChange={e => setDescription(e.target.value)}>
-          {description}
+        <textarea value={description} onChange={e => setDescription(e.target.value)}>
         </textarea>
       </div>
       <div>
@@ -46,13 +46,16 @@ function CreateTaskForm({onSent}: {onSent: (tasks: TaskDTO[]) => void}) {
   )
 }
 
-export function App() {
+export default function App() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]);
 
   useEffect(() => {
     fetch(apiUrl)
       .then(res => res.json())
-      .then(setTasks)
+      .then(t => {
+        console.log(t);
+        setTasks(t)
+      })
       .catch(console.error);
   }, []);
 
