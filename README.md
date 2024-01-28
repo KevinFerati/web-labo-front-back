@@ -2,6 +2,7 @@
 
 Ce projet est un autre todo liste. Le backend a été fait avec NestJS et le front avec React qui se situent respectivement dans les dossiers "back" et "front". Les deux projets sont exécutables en dév avec la commande `npm run start` pour le front et `npm run start:dev` pour le back avec nodejs v20.11.0 ou avec le decontainer présent à la racine.
 
+Il a été fait par Pirakasraj Anthonponrajkumar et Kevin Ferati.
 
 Il est possible de lancer l'environnement grâce à docker compose avec la commande `docker compose up`
 
