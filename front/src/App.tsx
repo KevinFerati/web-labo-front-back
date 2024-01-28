@@ -23,7 +23,7 @@ function CreateTaskForm({onSent}: {onSent: (tasks: TaskDTO[]) => void}) {
     let task: TaskDTO = {
       description, finished
     }
-    fetch(apiUrl, { 
+    fetch(apiUrl, {
       method: 'POST', body: JSON.stringify(task), headers: {"Content-Type": "application/json"}})
       .then(r => r.json())
       .then(onSent)
